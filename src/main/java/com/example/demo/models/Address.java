@@ -1,12 +1,15 @@
 package com.example.demo.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
 @Table(name = "addresses")
 public class Address
 {
@@ -26,4 +29,9 @@ public class Address
 
     @Column(name = "state", nullable = false)
     private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 }

@@ -1,11 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.models.Address;
 import com.example.demo.models.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class DemoApplication
+{
 
 	public static void main(String[] args)
 	{
@@ -19,7 +21,28 @@ public class DemoApplication {
 
 		//var user = new User(123L, "abc", "123", "abc@123");
 
-		System.out.println("User: " + user);
+		var user = User.builder()
+				.id(123L)
+				.name("abc")
+				.password("123")
+				.email("abc@123")
+				.build();
+
+		var address = Address.builder()
+					.id(123L)
+					.street("abc")
+					.city("abc")
+					.zip("abc")
+					.state("abc")
+					.build();
+
+		user.addAddress(address);
+
+		user.addTag("tag1");
+		user.addTag("tag2");
+
+		System.out.println("User : " + user);
+
 	}
 
 }
